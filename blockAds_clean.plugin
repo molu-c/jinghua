@@ -10,7 +10,7 @@
 #!system=iOS, iPadOS
 #!system_version = 
 #!loon_version = 
-#!date=2026-04-07 21:51:00
+#!date=2026-04-14 22:55:00
 #!remark=下方的所有规则都标注了对应的hostname，可能存在错误或者遗漏，欢迎反馈。对于无法/可选MITM的hostname都特别做了“如开启可自行添加主机名”提示，如果提示后面没有标注主机名则包含所有主机名，否则只包含提示语后面的主机名。
 #############################################
 # "reject"        策略返回 HTTP 状态码 404,不附带任何额外内容
@@ -1403,13 +1403,6 @@ https?:\/\/awg\.enmonster\.com\/apa\/(advert\/demand\/home\/poster|index\/advert
 ^https?:\/\/api-one-wscn\.awtmt\.com\/apiv1\/advertising\/ads\/[0-9]+\/materials reject-dict
 ^https?:\/\/api\.wallstreetcn\.com\/apiv\d\/advertising\/ reject
 
-# > 虎牙直播
-# hostname = cdn.wup.huya.com, business.msstatic.com, cdnfile1.msstatic.com, live-ads.huya.com
-^https?:\/\/cdn\.wup\.huya\.com\/launch\/queryHttpDns$ reject
-^https?:\/\/business\.msstatic\.com\/advertiser\/material reject
-^https?:\/\/cdnfile1\.msstatic\.com\/cdnfile\/appad\/ reject-img
-^https?://live-ads\.huya\.com/live/getAllEntrance.*$ reject-dict
-
 # > 华住会
 # hostname = appapi.huazhu.com, hweb-hotel.huazhu.com, hweb-manager.huazhu.com
 # 开屏广告
@@ -1424,6 +1417,19 @@ https?:\/\/awg\.enmonster\.com\/apa\/(advert\/demand\/home\/poster|index\/advert
 ^https?:\/\/hweb-manager\.huazhu\.com\/bundle\/upgrade\/check reject-dict
 # 搜索酒店上方Banner
 ^https?:\/\/hweb-manager\.huazhu\.com\/hotels\/ad\/ reject-dict
+
+# > 华盛通
+# hostname = interface.hstong.com
+# 横幅广告
+^https:\/\/interface\.hstong\.com\/pdp\/ad\/images\/v2 reject-200
+^https:\/\/interface\.hstong\.com\/ad\/images\/v2 reject-200
+
+# > 虎牙直播
+# hostname = cdn.wup.huya.com, business.msstatic.com, cdnfile1.msstatic.com, live-ads.huya.com
+^https?:\/\/cdn\.wup\.huya\.com\/launch\/queryHttpDns$ reject
+^https?:\/\/business\.msstatic\.com\/advertiser\/material reject
+^https?:\/\/cdnfile1\.msstatic\.com\/cdnfile\/appad\/ reject-img
+^https?://live-ads\.huya\.com/live/getAllEntrance.*$ reject-dict
 
 # > 韩剧TV
 # hostname = gfp.veta.naver.com, api.hanju.koudaibaobao.com
@@ -4426,13 +4432,13 @@ http-response ^https?:\/\/s-api\.smzdm\.com\/sou\/list_v10\? script-path=https:/
 http-response ^https?:\/\/user-api\.smzdm\.com\/vip\/creator_user_center script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/smzdm_ads.js, requires-body=true, timeout=60, tag=什么值得买去广告, enable={smzdm_enable}
 http-response ^https?:\/\/user-api\.smzdm\.com\/vip$ script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/Smzdm.js, requires-body=true, timeout=60, tag=什么值得买去广告, enable={smzdm_enable}
 # 感谢【怎么肥事】分享
-http-response ^https?:\/\/app-api\.smzdm\.com\/util\/loading script-path=https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Smzdm.js, requires-body=true, timeout=60, tag=Smzdm, enable={smzdm_enable}
-http-response ^https?:\/\/app-api\.smzdm\.com\/util\/update script-path=https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Smzdm.js, requires-body=true, timeout=60, tag=Smzdm, enable={smzdm_enable}
-http-response ^https?:\/\/user-api\.smzdm\.com\/vip\/bottom_card_list script-path=https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Smzdm.js, requires-body=true, timeout=60, tag=Smzdm, enable={smzdm_enable}
-http-response ^https?:\/\/haojia-api\.smzdm\.com\/home\/list script-path=https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Smzdm.js, requires-body=true, timeout=60, tag=Smzdm, enable={smzdm_enable}
-http-response ^https?:\/\/homepage-api\.smzdm\.com\/v3\/home script-path=https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Smzdm.js, requires-body=true, timeout=60, tag=Smzdm, enable={smzdm_enable}
-http-response ^https?:\/\/article-api\.smzdm\.com\/publish\/get_bubble script-path=https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Smzdm.js, requires-body=true, timeout=60, tag=Smzdm, enable={smzdm_enable}
-http-response ^https?:\/\/qianbao\.smzdm\.com\/v\d\/app\/home script-path=https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Smzdm.js, requires-body=true, timeout=60, tag=Smzdm, enable={smzdm_enable}
+http-response ^https?:\/\/app-api\.smzdm\.com\/util\/loading script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/Smzdm.js, requires-body=true, timeout=60, tag=Smzdm, enable={smzdm_enable}
+http-response ^https?:\/\/app-api\.smzdm\.com\/util\/update script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/Smzdm.js, requires-body=true, timeout=60, tag=Smzdm, enable={smzdm_enable}
+http-response ^https?:\/\/user-api\.smzdm\.com\/vip\/bottom_card_list script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/Smzdm.js, requires-body=true, timeout=60, tag=Smzdm, enable={smzdm_enable}
+http-response ^https?:\/\/haojia-api\.smzdm\.com\/home\/list script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/Smzdm.js, requires-body=true, timeout=60, tag=Smzdm, enable={smzdm_enable}
+http-response ^https?:\/\/homepage-api\.smzdm\.com\/v3\/home script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/Smzdm.js, requires-body=true, timeout=60, tag=Smzdm, enable={smzdm_enable}
+http-response ^https?:\/\/article-api\.smzdm\.com\/publish\/get_bubble script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/Smzdm.js, requires-body=true, timeout=60, tag=Smzdm, enable={smzdm_enable}
+http-response ^https?:\/\/qianbao\.smzdm\.com\/v\d\/app\/home script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/Scripts/smzdm/Smzdm.js, requires-body=true, timeout=60, tag=Smzdm, enable={smzdm_enable}
 
 
 
